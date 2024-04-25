@@ -1,0 +1,162 @@
+:root {
+  --bg-color: rgb(234, 220, 201);
+  --text-color: rgb(32, 30, 26);
+  --link-color: rgb(49, 57, 251);
+  --link-hover-color: rgb(32, 30, 26);
+  --selection-bg-color: rgb(49, 57, 251);
+  --blockquote-bg-color: rgba(236, 237, 254);
+  --selection-text-color: white;
+  --heading-font-family: "avenir next", avenir, -apple-system,
+    blinkmacsystemfont, neue-haas-unica, sans-serif;
+}
+
+* {
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h4,
+h5,
+h6 {
+  line-height: 1;
+}
+
+body * + *,
+ul {
+  margin-top: 24px;
+}
+
+body {
+  font-family: -apple-system, blinkmacsystemfont, neue-haas-unica, sans-serif;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 1em;
+  word-wrap: break-word;
+  hyphens: auto;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  line-height: 2.5;
+}
+
+h2 {
+  line-height: 2.25;
+}
+
+h3 {
+  line-height: 2.125;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--heading-font-family);
+  font-size: inherit;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.25em;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--link-color);
+  transition: color 0.25s ease-in-out;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* SVG colors are based on theme values */
+a:not([href^="https://pcalv.es"])
+{
+  background-image: url('data:image/svg+xml,<svg fill="rgb(49, 57, 251)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="M18 7a1 1 0 0 0-1-1H9a1 1 0 0 0 0 2h5.6l-8.3 8.3a1 1 0 0 0 0 1.4 1 1 0 0 0 1.4 0L16 9.4V15a1 1 0 0 0 1 1 1 1 0 0 0 1-1z" /></g></svg>');
+  background-position: right 30%;
+  background-size: 0.75em;
+  padding-right: 0.75em;
+  background-repeat: no-repeat;
+}
+
+a:not([href^="https://pcalv.es"]):hover
+{
+  background-image: url('data:image/svg+xml,<svg fill="rgb(32, 30, 26)" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="M18 7a1 1 0 0 0-1-1H9a1 1 0 0 0 0 2h5.6l-8.3 8.3a1 1 0 0 0 0 1.4 1 1 0 0 0 1.4 0L16 9.4V15a1 1 0 0 0 1 1 1 1 0 0 0 1-1z" /></g></svg>');
+}
+
+::selection {
+  background: var(--selection-bg-color);
+  color: var(--selection-text-color);
+  text-shadow: none;
+}
+
+@media (min-width: 40em) {
+  body {
+    font-size: 125%;
+  }
+}
+
+@media (min-width: 80em) {
+  body {
+    font-size: 150%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--bg-color);
+    background: var(--text-color);
+  }
+
+  a {
+    color: var(--bg-color);
+  }
+
+  a:hover {
+    color: var(--bg-color);
+  }
+
+  a:not([href^="https://pcalv.es"])
+  {
+    background-image: url('data:image/svg+xml,<svg fill="rgb(234, 220, 201" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g><path d="M18 7a1 1 0 0 0-1-1H9a1 1 0 0 0 0 2h5.6l-8.3 8.3a1 1 0 0 0 0 1.4 1 1 0 0 0 1.4 0L16 9.4V15a1 1 0 0 0 1 1 1 1 0 0 0 1-1z" /></g></svg>');
+  }
+}
