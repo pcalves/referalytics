@@ -8,28 +8,34 @@ importers:
 
   .:
     dependencies:
-      lowdb:
-        specifier: ^7.0.1
-        version: 7.0.1
-    devDependencies:
+      '@netlify/functions':
+        specifier: ^2.6.0
+        version: 2.6.0
       '@types/express':
         specifier: ^4.17.15
         version: 4.17.21
       '@types/node':
         specifier: ^20.9.3
         version: 20.12.7
-      eslint:
-        specifier: ^9.1.1
-        version: 9.1.1
-      eslint-plugin-simple-import-sort:
-        specifier: ^12.1.0
-        version: 12.1.0(eslint@9.1.1)
       express:
         specifier: ^4.18.2
         version: 4.19.2
       express-async-handler:
         specifier: ^1.2.0
         version: 1.2.0
+      lowdb:
+        specifier: ^7.0.1
+        version: 7.0.1
+      serverless-http:
+        specifier: ^3.2.0
+        version: 3.2.0
+    devDependencies:
+      eslint:
+        specifier: ^9.1.1
+        version: 9.1.1
+      eslint-plugin-simple-import-sort:
+        specifier: ^12.1.0
+        version: 12.1.0(eslint@9.1.1)
       husky:
         specifier: ^9.0.11
         version: 9.0.11
@@ -42,9 +48,6 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
-      serverless-http:
-        specifier: ^3.2.0
-        version: 3.2.0
       tsx:
         specifier: ^4.5.0
         version: 4.7.2
@@ -375,6 +378,18 @@ packages:
   '@humanwhocodes/retry@0.2.3':
     resolution: {integrity: sha512-X38nUbachlb01YMlvPFojKoiXq+LzZvuSce70KPMPdeM1Rj03k4dR7lDslhbqXn3Ang4EU3+EAmwEAsbrjHW3g==}
     engines: {node: '>=18.18'}
+
+  '@netlify/functions@2.6.0':
+    resolution: {integrity: sha512-vU20tij0fb4nRGACqb+5SQvKd50JYyTyEhQetCMHdakcJFzjLDivvRR16u1G2Oy4A7xNAtGJF1uz8reeOtTVcQ==}
+    engines: {node: '>=14.0.0'}
+
+  '@netlify/node-cookies@0.1.0':
+    resolution: {integrity: sha512-OAs1xG+FfLX0LoRASpqzVntVV/RpYkgpI0VrUnw2u0Q1qiZUzcPffxRK8HF3gc4GjuhG5ahOEMJ9bswBiZPq0g==}
+    engines: {node: ^14.16.0 || >=16.0.0}
+
+  '@netlify/serverless-functions-api@1.14.0':
+    resolution: {integrity: sha512-HUNETLNvNiC2J+SB/YuRwJA9+agPrc0azSoWVk8H85GC+YE114hcS5JW+dstpKwVerp2xILE3vNWN7IMXP5Q5Q==}
+    engines: {node: ^14.18.0 || >=16.0.0}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1477,6 +1492,9 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
+  urlpattern-polyfill@8.0.2:
+    resolution: {integrity: sha512-Qp95D4TPJl1kC9SKigDcqgyM2VDVO4RiJc2d4qe5GrYm+zbIQCWWKAFaJNQ4BhdFeDGwBmAxqJBwWSJDb9T3BQ==}
+
   utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
@@ -1714,6 +1732,17 @@ snapshots:
   '@humanwhocodes/object-schema@2.0.3': {}
 
   '@humanwhocodes/retry@0.2.3': {}
+
+  '@netlify/functions@2.6.0':
+    dependencies:
+      '@netlify/serverless-functions-api': 1.14.0
+
+  '@netlify/node-cookies@0.1.0': {}
+
+  '@netlify/serverless-functions-api@1.14.0':
+    dependencies:
+      '@netlify/node-cookies': 0.1.0
+      urlpattern-polyfill: 8.0.2
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -2883,6 +2912,8 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  urlpattern-polyfill@8.0.2: {}
 
   utils-merge@1.0.1: {}
 

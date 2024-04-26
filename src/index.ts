@@ -1,12 +1,28 @@
+import { PathLike } from "node:fs";
+
 import express from "express";
 import asyncHandler from "express-async-handler";
+import { Low, Memory } from "lowdb";
+import { JSONFile } from "lowdb/node";
 import serverless from "serverless-http";
 import ViteExpress from "vite-express";
 
-import JSONFilePreset from "./init.js";
+async function JSONFilePreset<Data>(
+  filename: PathLike,
+  defaultData: Data,
+): Promise<Low<Data>> {
+  const adapter =
+    process.env.NODE_ENV === "test"
+      ? new Memory<Data>()
+      : new JSONFile<Data>(filename);
+  const db = new Low<Data>(adapter, defaultData);
+  await db.read();
+  return db;
+}
 
 const app = express();
 
+app.set('view engine', 'html');
 app.use(express.json());
 
 type Referer = {
@@ -25,6 +41,9 @@ type Data = {
 const db = await JSONFilePreset<Data>("db.json", { pages: [] });
 
 const { pages } = db.data;
+
+app.use(express.static('../'));
+
 
 app.get("/pages", (_req, res) => {
   res.send(pages);
