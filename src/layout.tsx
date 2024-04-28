@@ -45,9 +45,9 @@ export function Pages({ site, pages }: { site: string; pages: Page[] }) {
                 <a href={site + slug}>{slug}</a>
               </h2>
               <ul>
-                {referers.map(({ url }) => (
+                {referers.map((url) => (
                   <li>
-                    <a href={url}>{url}</a>
+                    <a href={url} target="_blank">{url}</a>
                   </li>
                 ))}
               </ul>

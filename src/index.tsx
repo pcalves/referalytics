@@ -18,13 +18,9 @@ async function JSONFilePreset<Data>(
   return db;
 }
 
-type Referer = {
-  url: string;
-};
-
 export type Page = {
   slug: string;
-  referers: Referer[];
+  referers: string[];
 };
 
 type Data = {
@@ -48,26 +44,26 @@ app.get("/", (c) => {
   );
 });
 
-app.post(
+app.get(
   "/log",
   async (c) => {
-    if (!c.req.query("slug")) {
-      return c.body("Missing slug parameter", 400);
+    const slug = decodeURI(c.req.query("slug") ?? "");
+    const referer = decodeURI(c.req.query("referer") ?? "");
+
+    if (!slug || !referer) {
+      return c.body("Missing parameter", 400);
     }
 
-    const referer = await c.req.json() as Referer;
+    const page = pages.find((p) => p.slug === slug);
 
-    const page = pages.find((p) => p.slug === c.req.query("slug"));
-    const existingReferer = page?.referers.find((r) => r.url === referer.url);
-
-    if (page && !existingReferer) {
+    if (page && !page.referers.includes(referer)) {
       await db.update(({ pages }) => {
         pages[pages.indexOf(page)].referers = [...page.referers, referer];
       });
     } else if (!page) {
       await db.update(({ pages }) =>
         pages.push({
-          slug: String(c.req.query("slug")),
+          slug,
           referers: [referer],
         })
       );
