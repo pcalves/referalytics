@@ -52,7 +52,7 @@ app.get(
         slug,
         referers: [...item.value.referers, referer],
       });
-    } else {
+    } else if (!item.value) {
       kv.set(key, {
         slug,
         referers: [referer],
