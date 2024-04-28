@@ -49,7 +49,7 @@ app.get("/", (c) => {
 });
 
 app.post(
-  "/pages",
+  "/log",
   async (c) => {
     if (!c.req.query("slug")) {
       return c.body("Missing slug parameter", 400);
