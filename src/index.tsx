@@ -45,6 +45,10 @@ app.get(
       return c.body("Missing parameter", 400);
     }
 
+    if (location.href.includes(referer)) {
+      return c.body("Prevent self-referrals", 400);
+    }
+
     const key = ["pages", slug];
     const item = await kv.get<Page>(key);
     if (item.value && !item.value.referers.includes(referer)) {
