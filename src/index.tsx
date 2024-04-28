@@ -13,7 +13,7 @@ type Data = {
   pages: Page[];
 };
 
-const kv = await Deno.openKv(".kv");
+const kv = await Deno.openKv();
 
 const app = new Hono();
 
