@@ -18,8 +18,6 @@ async function JSONFilePreset<Data>(
   return db;
 }
 
-const app = new Hono();
-
 type Referer = {
   url: string;
 };
@@ -36,6 +34,8 @@ type Data = {
 const db = await JSONFilePreset<Data>("db.json", { pages: [] });
 
 const { pages } = db.data;
+
+const app = new Hono();
 
 app.get("/", (c) => {
   const props = {
