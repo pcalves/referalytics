@@ -1,21 +1,2 @@
-# Logs
-logs
-*.log
-
-dist
-*.local
-.kv
-
-# Editor directories and files
 .vscode/*
-!.vscode/extensions.json
-.idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# Local Netlify folder
-.netlify
