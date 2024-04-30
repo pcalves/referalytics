@@ -26,7 +26,7 @@ app.get("/", async (c) => {
   }
 
   const props = {
-    site: Deno.env.get("SITE") || "https://www.example.com",
+    site: Deno.env.get("SITE_URL") || "https://www.example.com/",
     pages,
   };
 
@@ -40,13 +40,15 @@ app.get(
   async (c) => {
     const slug = decodeURI(c.req.query("slug") ?? "");
     const referer = decodeURI(c.req.query("referer") ?? "");
+    const location = Deno.env.get("ANALYTICS_URL") ||
+      "https://analytics.example.com/";
 
     if (!slug || !referer) {
       return c.body("Missing parameter", 400);
     }
 
-    if (location.href.includes(referer)) {
-      return c.body("Prevent self-referrals", 400);
+    if (location.includes(referer)) {
+      return c.body("No self-referrals", 400);
     }
 
     const key = ["pages", slug];
