@@ -15,6 +15,10 @@ type Data = {
 
 const kv = await Deno.openKv();
 
+const site = Deno.env.get("SITE_URL") || "https://www.example.com";
+const location = Deno.env.get("ANALYTICS_URL") ||
+  "https://analytics.example.com";
+
 const app = new Hono();
 
 app.get("/", async (c) => {
@@ -26,7 +30,7 @@ app.get("/", async (c) => {
   }
 
   const props = {
-    site: Deno.env.get("SITE_URL") || "https://www.example.com/",
+    site,
     pages,
   };
 
@@ -40,14 +44,12 @@ app.get(
   async (c) => {
     const slug = decodeURI(c.req.query("slug") ?? "");
     const referer = decodeURI(c.req.query("referer") ?? "");
-    const location = Deno.env.get("ANALYTICS_URL") ||
-      "https://analytics.example.com";
 
     if (!slug || !referer) {
       return c.body("Missing parameter", 400);
     }
 
-    if (referer.includes(location)) {
+    if (referer.includes(location) || referer.includes(site)) {
       return c.body("No self-referrals", 400);
     }
 
