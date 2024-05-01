@@ -11,8 +11,13 @@ I couldn't find a tool that did this, so I made one. It's a simple app that logs
 ## Installation
 1. Clone the repository
 2. Install [Deno](https://deno.land), either through the steps provided on the website or by running `asdf install` if you have [asdf](https://asdf-vm.com) installed.
+    - with `asdf`, you may need to run `asdf plugin add deno`
 3. Copy the `.env.example` file to `.env` and fill in the values
-4. Run `deno task deploy` and follow the browser instructions
+    - `ANALYTICS_URL` is the URL of the deployed version of this app. If you're not planning on using a custom domain, you will need to deploy the app to get this value, then re-deploy
+    - `SITE_URL` is the URL of the site you want to track with this app
+4. Change `deploy.project` in `deno.json` to your own project name
+5. Install [deployctl](https://github.com/denoland/deployctl) by running `deno install -Arf jsr:@deno/deployctl`
+6. Run `deno task deploy` and follow the browser instructions
 
 ## Caveats
 
